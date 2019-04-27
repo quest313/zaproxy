@@ -19,14 +19,6 @@
  */
 package org.zaproxy.zap.extension.authentication;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
-
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.httpclient.URI;
@@ -46,12 +38,21 @@ import org.zaproxy.zap.authentication.FormBasedAuthenticationMethodType.FormBase
 import org.zaproxy.zap.authentication.HttpAuthenticationMethodType;
 import org.zaproxy.zap.authentication.JsonBasedAuthenticationMethodType;
 import org.zaproxy.zap.authentication.ManualAuthenticationMethodType;
+import org.zaproxy.zap.authentication.OAuth2AuthenticationMethodType;
 import org.zaproxy.zap.authentication.ScriptBasedAuthenticationMethodType;
 import org.zaproxy.zap.extension.stdmenus.PopupContextMenuItemFactory;
 import org.zaproxy.zap.model.Context;
 import org.zaproxy.zap.model.ContextDataFactory;
 import org.zaproxy.zap.view.AbstractContextPropertiesPanel;
 import org.zaproxy.zap.view.ContextPanelFactory;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * The Extension that handles Authentication methods, in correlation with Contexts.
@@ -204,6 +205,7 @@ public class ExtensionAuthentication extends ExtensionAdaptor implements Context
 		this.authenticationMethodTypes.add(new ManualAuthenticationMethodType());
 		this.authenticationMethodTypes.add(new ScriptBasedAuthenticationMethodType());
 		this.authenticationMethodTypes.add(new JsonBasedAuthenticationMethodType());
+		this.authenticationMethodTypes.add(new OAuth2AuthenticationMethodType());
 
 		for (AuthenticationMethodType a : authenticationMethodTypes) {
 			a.hook(hook);

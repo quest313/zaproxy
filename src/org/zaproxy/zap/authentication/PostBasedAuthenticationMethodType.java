@@ -19,32 +19,7 @@
  */
 package org.zaproxy.zap.authentication;
 
-import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.UnaryOperator;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
-
 import net.sf.json.JSONObject;
-
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.httpclient.URI;
@@ -85,6 +60,18 @@ import org.zaproxy.zap.view.LayoutHelper;
 import org.zaproxy.zap.view.NodeSelectDialog;
 import org.zaproxy.zap.view.popup.PopupMenuItemContext;
 import org.zaproxy.zap.view.popup.PopupMenuItemSiteNodeContextMenuFactory;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.UnaryOperator;
 
 /**
  * An {@link AuthenticationMethodType} where the Users are authenticated by POSTing the username and password.
@@ -761,7 +748,7 @@ public abstract class PostBasedAuthenticationMethodType extends AuthenticationMe
 
 		/**
 		 * Gets the index of the parameter with a given value.
-		 * 
+		 *
 		 * @param params the params
 		 * @param value the value
 		 * @return the index of param with value, or -1 if no match was found
@@ -803,34 +790,7 @@ public abstract class PostBasedAuthenticationMethodType extends AuthenticationMe
 		}
 	}
 
-	/**
-	 * A renderer for properly displaying the name of a {@link NameValuePair} in a ComboBox.
-	 * 
-	 * @see #INSTANCE
-	 */
-	private static class NameValuePairRenderer extends BasicComboBoxRenderer {
 
-		public static final NameValuePairRenderer INSTANCE = new NameValuePairRenderer();
-
-		private static final long serialVersionUID = 3654541772447187317L;
-		private static final Border BORDER = new EmptyBorder(2, 3, 3, 3);
-
-		private NameValuePairRenderer() {
-		}
-
-		@Override
-		@SuppressWarnings("rawtypes")
-		public Component getListCellRendererComponent(JList list, Object value, int index,
-				boolean isSelected, boolean cellHasFocus) {
-			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-			if (value != null) {
-				setBorder(BORDER);
-				NameValuePair item = (NameValuePair) value;
-				setText(item.getName());
-			}
-			return this;
-		}
-	}
 
 	@Override
 	public abstract PostBasedAuthenticationMethod createAuthenticationMethod(int contextId);

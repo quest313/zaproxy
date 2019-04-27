@@ -26,15 +26,14 @@
 
 package org.parosproxy.paros.view;
 
-import java.awt.Frame;
-import java.awt.HeadlessException;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.parosproxy.paros.model.Model;
 import org.parosproxy.paros.model.Session;
 import org.zaproxy.zap.model.Context;
 import org.zaproxy.zap.view.AbstractContextPropertiesPanel;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SessionDialog extends AbstractParamDialog {
 
@@ -75,7 +74,7 @@ public class SessionDialog extends AbstractParamDialog {
 	 */
 	private void initialize() {
 		if (Model.getSingleton().getOptionsParam().getViewParam().getWmUiHandlingOption() == 0) {
-			this.setSize(650, 500);
+			this.setSize(650, 700); //temporary
 		} else {
 			pack();
 		}
